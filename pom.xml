@@ -98,13 +98,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>KK FUNDA Releases Nexus Repository</name>
-	      <url>http://13.203.102.144:8081/repository/jio-release/</url>
+	      <url>http://13.207.84.115:8081/repository/weba-pp-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>KK FUNDA Snapshot Nexus Repository </name>
-	      <url>http://13.203.102.144:8081/repository/jio-snapshot/</url>
+	      <url>http://13.207.84.115:8081/repository/web-app-snap-chat/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
