@@ -28,7 +28,7 @@ stage('Deploy to Tomcat') {
     sh """
     curl -u rr:Ravi@123 \
     --upload-file target/maven-web-application.war \
-    "http://13.127.52.74:8080/manager/text/deploy?path=/maven-web-application&update=true"
+    "http://3.110.224.88:8080/manager/text/deploy?path=/maven-web-application&update=true"
     """
 }
 
