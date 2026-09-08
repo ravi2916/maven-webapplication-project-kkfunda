@@ -1,35 +1,48 @@
-node
-{
-//"/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven-3.9.16/bin"
+pipeline{
 
-def mvnHome=tool name : "maven-3.9.16"
+    agent any
 
-stage('Git Checkout')
-{
-git credentialsId: '161b281b-5091-4745-9e23-894203f60737', url: 'https://github.com/ravi2916/maven-webapplication-project-kkfunda.git'
-}
-stage ('Compile')
-{
- sh "${mvnHome}/bin/mvn compile"
-}
-stage ('Build')
-{
-sh "${mvnHome}/bin/mvn clean package"
-}
-stage ("Sonar")
-{
-sh "${mvnHome}/bin/mvn sonar:sonar"
-}
-stage ("Nexus")
-{
-sh "${mvnHome}/bin/mvn clean deploy"
-}
-stage('Deploy to Tomcat') {
-    sh """
+    tools{
+        maven 'maven-3.9.16'
+    }
+    stages{
+        stage('Git Checkout')
+        {
+            steps{
+                git branch: 'master',
+                url : 'https://github.com/ravi2916/maven-webapplication-project-kkfunda.git'
+            }
+        }
+        stage('Compile')
+        {
+            steps{
+                sh 'mvn compile'
+            }
+        }
+         stage('Build')
+        {
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+        stage('Sonar Qube'){
+            steps{
+                sh 'mvn sonar:sonar'
+            }
+        }
+        stage("Artifatcory Backup Nexus"){
+            steps{
+                sh 'mvn deploy'
+            }
+        }
+        stage('Deploy To Tomcat'){
+            steps{
+                sh """
     curl -u rr:Ravi@123 \
     --upload-file target/maven-web-application.war \
-    "http://3.110.224.88:8080/manager/text/deploy?path=/maven-web-application&update=true"
+    "http://15.206.187.13:8080//manager/text/deploy?path=/maven-web-application&update=true"
     """
-}
-
+            }
+        }
+    }
 }
