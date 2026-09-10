@@ -40,7 +40,7 @@ pipeline
                  sh '''
                 curl -u rr:Ravi@123 \
                 --upload-file target/maven-web-application.war \
-                "http://15.206.187.13:8080/manager/text/deploy?path=/maven-web-application&update=true"
+                "http://43.204.107.236:8080/manager/text/deploy?path=/maven-web-application&update=true"
                 '''
             }
         }
